@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amei Atelier — Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            background: linear-gradient(to bottom, #f8f7f4 0%, #ebe9e1 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-image: url('hero1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(248, 247, 244, 0.65) 0%, rgba(235, 233, 225, 0.75) 100%);
+            z-index: 1;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: #6b6b6b;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 4rem;
+            color: #2c2c2c;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .pillar-title {
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .pillar-text {
+            font-size: 0.95rem;
+            color: #6b6b6b;
+            line-height: 1.7;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .experience-words {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            font-size: 1.1rem;
+            color: #6b6b6b;
+            font-style: italic;
+        }
+
+        .experience-word {
+            opacity: 0;
+            animation: fadeInStagger 1s ease-out forwards;
+        }
+
+        .experience-word:nth-child(1) { animation-delay: 0.2s; }
+        .experience-word:nth-child(2) { animation-delay: 0.4s; }
+        .experience-word:nth-child(3) { animation-delay: 0.6s; }
+        .experience-word:nth-child(4) { animation-delay: 0.8s; }
+        .experience-word:nth-child(5) { animation-delay: 1s; }
+
+        /* Email Signup */
+        .signup {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .signup-container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .signup-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .signup-text {
+            font-size: 0.95rem;
+            color: #6b6b6b;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #d4d2c8;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            font-family: 'Garamond', 'Georgia', serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #8b8b8b;
+        }
+
+        .submit-btn {
+            padding: 1rem 2.5rem;
+            background: #2c2c2c;
+            color: #f8f7f4;
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            font-family: 'Garamond', 'Georgia', serif;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4a4a4a;
+        }
+
+        .success-message {
+            color: #6b6b6b;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #8b8b8b;
+            letter-spacing: 0.1em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInStagger {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">AMEI ATELIER</h1>
+            <p class="tagline">FRAGRANCE AS RITUAL</p>
+            <div class="hero-text">
+                <p style="font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem;">Fragrance designed to calm the senses, not overwhelm them.</p>
+                <p style="font-size: 1rem; color: #6b6b6b; font-weight: 300;">Skin-close perfumes created for those sensitive to strong scent.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="problem-statement" style="padding: 5rem 0; text-align: center; background: rgba(255, 255, 255, 0.3);">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.9; color: #2c2c2c;">
+                <p style="margin-bottom: 1.5rem;">Many people love fragrance, but choose not to wear it.</p>
+                <p style="margin-bottom: 1.5rem;">For some, traditional perfumes can trigger headaches, irritation, or sensory fatigue.</p>
+                <p>Amei Atelier exists for those who want to experience scent without feeling overwhelmed by it.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="philosophy">
+        <div class="container">
+            <h2 class="section-title">OUR APPROACH</h2>
+            <div style="text-align: center; max-width: 750px; margin: 0 auto 4rem; color: #2c2c2c; font-size: 1.1rem; line-height: 1.9;">
+                <p style="margin-bottom: 2rem;">Amei Atelier approaches fragrance as a daily ritual — designed to be worn close to the body, unfold slowly, and support emotional balance throughout the day.</p>
+                <p style="color: #6b6b6b; font-size: 1.05rem;">Drawing from Traditional Chinese Medicine, French perfumery, and Western aromatherapy, our fragrances are composed with restraint, intention, and care for sensitive senses.</p>
+            </div>
+            <div class="pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">氣</div>
+                    <h3 class="pillar-title">Eastern Wisdom</h3>
+                    <p class="pillar-text">From Traditional Chinese Medicine, we take the idea of balance — selecting structures and ingredients that feel grounding rather than stimulating.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">⚗</div>
+                    <h3 class="pillar-title">French Artistry</h3>
+                    <p class="pillar-text">From French perfumery, we inherit discipline and composition, ensuring each fragrance evolves gently over time.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">◯</div>
+                    <h3 class="pillar-title">Western Science</h3>
+                    <p class="pillar-text">From Western aromatherapy, we apply an understanding of how scent interacts with the nervous system, prioritizing calm and clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sensory-promise" style="padding: 6rem 0; text-align: center;">
+        <div class="container">
+            <h2 class="section-title">HOW IT FEELS TO WEAR</h2>
+            <div style="max-width: 700px; margin: 0 auto; color: #2c2c2c; font-size: 1.05rem; line-height: 1.9;">
+                <p style="margin-bottom: 1.5rem;">Amei Atelier fragrances sit close to the skin, with soft projection and no sharp edges.</p>
+                <p style="margin-bottom: 1.5rem;">They unfold slowly, becoming warmer and quieter over time rather than louder.</p>
+                <p style="color: #6b6b6b;">Often, the scent fades before you notice — but the sense of calm remains.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="constraint" style="padding: 6rem 0; background: rgba(255, 255, 255, 0.4); text-align: center;">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto; color: #2c2c2c; font-size: 1.05rem; line-height: 1.9;">
+                <p style="margin-bottom: 1.5rem;">We work with limited palettes, lower concentrations, and a deliberate approach to formulation.</p>
+                <p style="margin-bottom: 1.5rem;">We avoid overpowering notes, aggressive projection, and unnecessary complexity.</p>
+                <p style="color: #6b6b6b;">Every choice is made in service of comfort, ease, and longevity on the skin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience">
+        <div class="container">
+            <h2 class="section-title">THE FEELING</h2>
+            <div class="experience-words">
+                <span class="experience-word">Quiet confidence</span>
+                <span class="experience-word">·</span>
+                <span class="experience-word">Soft focus</span>
+                <span class="experience-word">·</span>
+                <span class="experience-word">Clean air after rain, lingering on skin</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="signup">
+        <div class="container">
+            <div class="signup-container">
+                <h2 class="signup-title">JOIN THE ATELIER</h2>
+                <p class="signup-text">Early access to our first formulations. Limited releases. A quieter way to wear fragrance.</p>
+                <form class="email-form" id="signupForm">
+                    <input type="email" class="email-input" placeholder="your@email.com" required id="emailInput">
+                    <button type="submit" class="submit-btn">JOIN</button>
+                </form>
+                <p class="success-message" id="successMessage">Thank you. We'll be in touch soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 AMEI ATELIER — LAUNCHING SOON</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            
+            // Here you would normally send the email to your backend
+            // For now, we'll just show the success message
+            
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('emailInput').value = '';
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
